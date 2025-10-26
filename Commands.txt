@@ -1,0 +1,57 @@
+Get-Command git | Select-Object Source
+javac Test.java
+java Test
+
+#!/bin/bash
+
+echo "Step 0: Check Docker Installation"
+docker version
+docker info
+
+echo
+echo "Step 1: Pull Python Image"
+docker pull python:3.9.18-slim-bullseye
+
+echo
+echo "Step 2: List Docker Images"
+docker images
+docker images -q
+docker images -a
+docker image ls
+
+echo
+echo "Step 3: Run a Container (detached mode to show in docker ps)"
+docker run -d --name mypython python:3.9.18-slim-bullseye tail -f /dev/null
+
+echo
+echo "Step 4: Check Running Containers"
+docker ps
+
+echo
+echo "Step 5: Check All Containers"
+docker ps -a
+
+echo
+echo "Step 6: Inspect Image and Container"
+docker inspect python:3.9.18-slim-bullseye
+docker inspect mypython
+
+echo
+echo "Step 7: Stop the Container"
+docker stop mypython
+
+echo
+echo "Step 8: Verify Container Stopped"
+docker ps -a
+
+echo
+echo "Step 9: Remove the Container"
+docker rm mypython
+
+echo
+echo "Step 10: Remove the Image"
+docker rmi python:3.9.18-slim-bullseye
+
+echo
+echo "Docker Practical Exam Completed Successfully!"
+
